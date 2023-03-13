@@ -21,15 +21,18 @@ let operand2 = "";
 let operator = "";
 let result = "";
 
+const currentNumber = document.querySelector('.currentNumber');
+const previousNumber = document.querySelector('.previousNumber');
+
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) =>
   number.addEventListener("click", (e) => {
     if (operator) {
       operand2 += e.target.textContent;
-      console.log({ operand2 });
+      currentNumber.textContent = operand2;
     } else {
       operand1 += e.target.textContent;
-      console.log({ operand1 });
+      currentNumber.textContent = operand1;
     }
   })
 );
@@ -38,5 +41,6 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach((operatorL) =>
   operatorL.addEventListener("click", (e) => {
     operator += e.target.textContent;
+    previousNumber.textContent = `${operand1} ${operator}`
   })
 );
