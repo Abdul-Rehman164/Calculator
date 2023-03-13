@@ -27,6 +27,7 @@ const previousNumber = document.querySelector('.previousNumber');
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) =>
   number.addEventListener("click", (e) => {
+    console.log(e);
     if (operator) {
       operand2 += e.target.textContent;
       currentNumber.textContent = operand2;
@@ -64,6 +65,18 @@ clear.addEventListener('click',()=>{
     result = '';
     previousNumber.textContent = '';
     currentNumber.textContent = '0';
+});
+
+const deleteButton = document.querySelector('.delete');
+deleteButton.addEventListener('click',()=>{
+    if (operator){
+        operand2 = operand2.slice(0,-1);
+        currentNumber.textContent = operand2;
+    }else{
+        operand1 = operand1.slice(0,-1);
+        currentNumber.textContent = operand1;
+
+    }
 });
 
 
