@@ -56,5 +56,15 @@ equalTo.addEventListener('click', ()=>{
     }
 });
 
+const clear = document.querySelector('.clear');
+clear.addEventListener('click',()=>{
+    operand1 = '';
+    operand2 = '';
+    operator = '';
+    result = '';
+    previousNumber.textContent = '';
+    currentNumber.textContent = '0';
+});
+
 
 
