@@ -40,7 +40,16 @@ numbers.forEach((number) =>
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operatorL) =>
   operatorL.addEventListener("click", (e) => {
-    operator += e.target.textContent;
+    operator = e.target.textContent;
     previousNumber.textContent = `${operand1} ${operator}`
   })
 );
+
+const equalTo = document.querySelector('.equalTo');
+equalTo.addEventListener('click', ()=>{
+    if (operand1 && operand2 && operator){
+        previousNumber.textContent = `${operand1} ${operator} ${operand2} = `
+    }
+});
+
+
