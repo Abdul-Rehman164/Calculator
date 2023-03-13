@@ -29,11 +29,15 @@ numbers.forEach((number) =>
   number.addEventListener("click", (e) => {
     console.log(e);
     if (operator) {
-      operand2 += e.target.textContent;
-      currentNumber.textContent = operand2;
+        if (operand2.length <=9){
+            operand2 += e.target.textContent;
+            currentNumber.textContent = operand2;
+        }
     } else {
-      operand1 += e.target.textContent;
-      currentNumber.textContent = operand1;
+        if (operand1.length <= 9){
+            operand1 += e.target.textContent;
+            currentNumber.textContent = operand1;
+        }
     }
   })
 );
@@ -51,6 +55,9 @@ equalTo.addEventListener('click', ()=>{
     if (operand1 && operand2 && operator){
         previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
         result = operate(Number(operand1),Number(operand2),operator);
+        if (result.toString().length > 10){
+            result = result.toExponential(2);
+        }
         currentNumber.textContent = result;
         operand1 = result;
         operand2 = '';
