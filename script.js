@@ -29,11 +29,13 @@ numbers.forEach((number) =>
   number.addEventListener("click", (e) => {
     console.log(e);
     if (operator) {
+        if (operand2.includes('.') && e.target.textContent === '.') return;
         if (operand2.length <=9){
             operand2 += e.target.textContent;
             currentNumber.textContent = operand2;
         }
     } else {
+        if (operand1.includes('.') && e.target.textContent === '.') return;
         if (operand1.length <= 9){
             operand1 += e.target.textContent;
             currentNumber.textContent = operand1;
