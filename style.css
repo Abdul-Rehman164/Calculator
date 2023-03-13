@@ -13,7 +13,7 @@ body{
 .calculator{
     border: 2px solid black;
     border-radius: 10px;
-    height: 90vh;
+    height: 550px;
     width: 30vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

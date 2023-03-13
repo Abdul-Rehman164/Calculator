@@ -17,3 +17,9 @@ function operate(num1,num2,operation){
     else if (operation === '/') return divide(num1,num2);
 }
 
+function getOperand(){
+    const numbers = document.querySelectorAll('.number');
+    numbers.forEach(number => number.addEventListener('click',(e)=>{
+        return e.target.textContent;
+    }));
+}
