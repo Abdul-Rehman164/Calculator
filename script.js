@@ -23,3 +23,10 @@ function getOperand(){
         return e.target.textContent;
     }));
 }
+
+function getOperator(){
+    const operators = document.querySelectorAll('.operator');
+    operators.forEach(operator => operator.addEventListener('click',(e)=>{
+        return e.target.textContent;
+    }));
+};
