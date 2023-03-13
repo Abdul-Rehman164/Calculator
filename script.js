@@ -16,8 +16,32 @@ function operate(num1, num2, operation) {
   else if (operation === "x") return multiply(num1, num2);
   else if (operation === "/") return divide(num1, num2);
 }
-let operand1 = "";
-let operand2 = "";
+
+function getOperand(e){
+    let content = '';
+    if (e.type === 'click') content = e.target.textContent;
+    // if (e.type === 'keypress'){
+        //     content = String.fromCharCode(e.charCode)
+        // }
+        
+        if (operator) {
+            if (operand2.includes('.') && e.target.textContent === '.') return;
+            if (operand2.length <=9){
+                operand2 += content;
+                currentNumber.textContent = operand2;
+            }
+        } else {
+        if (operand1 === '0') operand1 = ''; //to remove the zero
+        if (operand1.includes('.') && e.target.textContent === '.') return;
+        if (operand1.length <= 9){
+            operand1 += content;
+            currentNumber.textContent = operand1;
+        }
+    }
+}
+
+let operand1 = '0';
+let operand2 = '';
 let operator = "";
 let result = "";
 
@@ -25,24 +49,10 @@ const currentNumber = document.querySelector('.currentNumber');
 const previousNumber = document.querySelector('.previousNumber');
 
 const numbers = document.querySelectorAll(".number");
-numbers.forEach((number) =>
-  number.addEventListener("click", (e) => {
-    console.log(e);
-    if (operator) {
-        if (operand2.includes('.') && e.target.textContent === '.') return;
-        if (operand2.length <=9){
-            operand2 += e.target.textContent;
-            currentNumber.textContent = operand2;
-        }
-    } else {
-        if (operand1.includes('.') && e.target.textContent === '.') return;
-        if (operand1.length <= 9){
-            operand1 += e.target.textContent;
-            currentNumber.textContent = operand1;
-        }
-    }
-  })
-);
+numbers.forEach((number) =>{
+  number.addEventListener("click", getOperand)
+//   number.addEventListener('keypress',getOperand)
+});
 
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operatorL) =>
@@ -57,7 +67,8 @@ equalTo.addEventListener('click', ()=>{
     if (operand1 && operand2 && operator){
         previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
         result = operate(Number(operand1),Number(operand2),operator);
-        if (result.toString().length > 10){
+        result = result.toString();
+        if (result.length > 10){
             result = result.toExponential(2);
         }
         currentNumber.textContent = result;
@@ -68,7 +79,7 @@ equalTo.addEventListener('click', ()=>{
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click',()=>{
-    operand1 = '';
+    operand1 = '0';
     operand2 = '';
     operator = '';
     result = '';
