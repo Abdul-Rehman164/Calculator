@@ -51,7 +51,10 @@ equalTo.addEventListener('click', ()=>{
         previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
         result = operate(Number(operand1),Number(operand2),operator);
         currentNumber.textContent = result;
+        operand1 = result;
+        operand2 = '';
     }
 });
+
 
 
