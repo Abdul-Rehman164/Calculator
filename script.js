@@ -48,7 +48,9 @@ operators.forEach((operatorL) =>
 const equalTo = document.querySelector('.equalTo');
 equalTo.addEventListener('click', ()=>{
     if (operand1 && operand2 && operator){
-        previousNumber.textContent = `${operand1} ${operator} ${operand2} = `
+        previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
+        result = operate(Number(operand1),Number(operand2),operator);
+        currentNumber.textContent = result;
     }
 });
 
