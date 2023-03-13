@@ -19,20 +19,22 @@ function operate(num1, num2, operation) {
 
 function getOperand(e){
     let content = '';
+    if (e.type === 'keypress'){
+        if ( (e.key >= '0' && e.key <= '9') || e.key === '.'){
+            content = e.key;
+        }else return;
+    }
     if (e.type === 'click') content = e.target.textContent;
-    // if (e.type === 'keypress'){
-        //     content = String.fromCharCode(e.charCode)
-        // }
         
         if (operator) {
-            if (operand2.includes('.') && e.target.textContent === '.') return;
+            if (operand2.includes('.') && content === '.') return;
             if (operand2.length <=9){
                 operand2 += content;
                 currentNumber.textContent = operand2;
             }
         } else {
-        if (operand1 === '0') operand1 = ''; //to remove the zero
-        if (operand1.includes('.') && e.target.textContent === '.') return;
+        if (operand1 === '0') operand1 = ''; //to remove the default zero
+        if (operand1.includes('.') && content === '.') return;
         if (operand1.length <= 9){
             operand1 += content;
             currentNumber.textContent = operand1;
@@ -48,10 +50,11 @@ let result = "";
 const currentNumber = document.querySelector('.currentNumber');
 const previousNumber = document.querySelector('.previousNumber');
 
+document.addEventListener("keypress",getOperand)
+
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) =>{
-  number.addEventListener("click", getOperand)
-//   number.addEventListener('keypress',getOperand)
+    number.addEventListener("click", getOperand)
 });
 
 const operators = document.querySelectorAll(".operator");
