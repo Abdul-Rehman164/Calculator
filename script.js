@@ -69,6 +69,18 @@ function getResult(e){
     }
 }
 
+function clearScreen(e){
+    if (e.pointerType === '') return;
+    if (e.key === 'c' || e.type === 'click'){
+        operand1 = '0';
+        operand2 = '';
+        operator = '';
+        result = '';
+        previousNumber.textContent = '';
+        currentNumber.textContent = '0'
+    }
+}
+
 let operand1 = '0';
 let operand2 = '';
 let operator = "";
@@ -96,16 +108,8 @@ equalTo.addEventListener('click', getResult);
 document.addEventListener('keypress',getResult)
 
 const clear = document.querySelector('.clear');
-clear.addEventListener('click',(e)=>{
-    if (e.pointerType === '') return;
-    operand1 = '0';
-    operand2 = '';
-    operator = '';
-    result = '';
-    previousNumber.textContent = '';
-    currentNumber.textContent = '0'
-
-});
+clear.addEventListener('click',clearScreen);
+document.addEventListener('keypress',clearScreen)
 
 const deleteButton = document.querySelector('.delete');
 deleteButton.addEventListener('click',()=>{
