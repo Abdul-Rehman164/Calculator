@@ -42,6 +42,16 @@ function getOperand(e){
     }
 }
 
+function getOperator(e){
+    if (e.type === 'keypress'){
+        if ( e.key === '+' || e.key <= '-' || e.key === '*' || e.key === '/'){
+            operator = e.key;
+        }else return;
+    }
+    if (e.type === 'click') operator = e.target.textContent;
+    previousNumber.textContent = `${operand1} ${operator}`
+}
+
 let operand1 = '0';
 let operand2 = '';
 let operator = "";
@@ -50,21 +60,21 @@ let result = "";
 const currentNumber = document.querySelector('.currentNumber');
 const previousNumber = document.querySelector('.previousNumber');
 
-document.addEventListener("keypress",getOperand)
 
+document.addEventListener('keypress',getOperand)
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) =>{
     number.addEventListener("click", getOperand)
 });
 
+document.addEventListener('keypress',getOperator)
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operatorL) =>
-  operatorL.addEventListener("click", (e) => {
-    operator = e.target.textContent;
-    previousNumber.textContent = `${operand1} ${operator}`
-  })
-);
+  operatorL.addEventListener("click",getOperator));
 
+
+
+  
 const equalTo = document.querySelector('.equalTo');
 equalTo.addEventListener('click', ()=>{
     if (operand1 && operand2 && operator){
