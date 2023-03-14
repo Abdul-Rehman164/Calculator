@@ -18,6 +18,7 @@ function operate(num1, num2, operation) {
 }
 
 function getOperand(e){
+    if (e.pointerType === '') return;
     let content = '';
     if (e.type === 'keypress'){
         if ( (e.key >= '0' && e.key <= '9') || e.key === '.'){
@@ -44,12 +45,28 @@ function getOperand(e){
 
 function getOperator(e){
     if (e.type === 'keypress'){
-        if ( e.key === '+' || e.key <= '-' || e.key === '*' || e.key === '/'){
+        if ( e.key === '+' || e.key === '-' || e.key === 'x' || e.key === '/'){
             operator = e.key;
         }else return;
     }
     if (e.type === 'click') operator = e.target.textContent;
     previousNumber.textContent = `${operand1} ${operator}`
+}
+
+function getResult(e){
+    if (e.key === "Enter" || e.type === 'click'){
+        if (operand1 && operand2 && operator){
+            previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
+            result = operate(Number(operand1),Number(operand2),operator);
+            if (result.toString().length > 10){
+                result = result.toExponential(2);
+            }
+            result = result.toString();
+            currentNumber.textContent = result;
+            operand1 = result;
+            operand2 = '';
+        }
+    }
 }
 
 let operand1 = '0';
@@ -73,31 +90,21 @@ operators.forEach((operatorL) =>
   operatorL.addEventListener("click",getOperator));
 
 
-
   
 const equalTo = document.querySelector('.equalTo');
-equalTo.addEventListener('click', ()=>{
-    if (operand1 && operand2 && operator){
-        previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
-        result = operate(Number(operand1),Number(operand2),operator);
-        result = result.toString();
-        if (result.length > 10){
-            result = result.toExponential(2);
-        }
-        currentNumber.textContent = result;
-        operand1 = result;
-        operand2 = '';
-    }
-});
+equalTo.addEventListener('click', getResult);
+document.addEventListener('keypress',getResult)
 
 const clear = document.querySelector('.clear');
-clear.addEventListener('click',()=>{
+clear.addEventListener('click',(e)=>{
+    if (e.pointerType === '') return;
     operand1 = '0';
     operand2 = '';
     operator = '';
     result = '';
     previousNumber.textContent = '';
-    currentNumber.textContent = '0';
+    currentNumber.textContent = '0'
+
 });
 
 const deleteButton = document.querySelector('.delete');
