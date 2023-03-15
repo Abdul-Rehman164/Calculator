@@ -58,9 +58,11 @@ function getResult(e){
         if (operand1 && operand2 && operator){
             previousNumber.textContent = `${operand1} ${operator} ${operand2} = `;
             result = operate(Number(operand1),Number(operand2),operator);
-            if (result.toString().length > 10){
-                result = result.toExponential(2);
-            }
+            if (Number.isInteger(result)) {
+                if (result.toString().length > 10){
+                    result = result.toExponential(2);
+                }
+            } else result = result.toPrecision(5);
             result = result.toString();
             currentNumber.textContent = result;
             operand1 = result;
@@ -122,6 +124,8 @@ deleteButton.addEventListener('click',()=>{
 
     }
 });
+
+Number.is
 
 
 
