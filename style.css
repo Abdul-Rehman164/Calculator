@@ -55,10 +55,18 @@ button{
     font-size: 1.5rem;
     border-radius: 5px;
 }
-
 button:hover{
-    opacity: 0.7;
+    scale: 1.07;
+}
+.number:hover{
+    background-color: rgb(231, 231, 216);
+}
+.operator:hover{
+    background-color: royalblue;
+}
+.equalTo:hover{
+    background-color: greenyellow;
 }
 button:active{
-    opacity: 1;
+    scale: 1;
 }
