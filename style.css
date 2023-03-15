@@ -49,17 +49,22 @@ body{
     grid-column: 3 / 5;
 }
 button{
-
     border: 2px solid black;
     font-family: inherit;
     font-size: 1.5rem;
-    border-radius: 5px;
+    border-radius: 20px;
+    animation-name: bouncing;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transition: background 1s;
 }
 button:hover{
     scale: 1.07;
 }
 .number:hover{
-    background-color: rgb(231, 231, 216);
+    background-color: rgb(209, 209, 156);
 }
 .operator:hover{
     background-color: royalblue;
@@ -69,4 +74,18 @@ button:hover{
 }
 button:active{
     scale: 1;
+}
+
+
+
+@keyframes bouncing{
+    0%,20%,80%,100%{
+        transform: translateY(0);
+    }
+    40%{
+        transform: translateY(-30px);
+    }
+    60%{
+        transform: translateY(15px);
+    }
 }
