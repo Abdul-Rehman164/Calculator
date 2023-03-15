@@ -83,6 +83,20 @@ function clearScreen(e){
     }
 }
 
+function deleteChr(e){
+    if (e.pointerType === '') return;
+    if(e.key === 'Backspace' || e.type === 'click'){
+        if (operator){
+            operand2 = operand2.slice(0,-1);
+            currentNumber.textContent = operand2;
+        }else{
+            operand1 = operand1.slice(0,-1);
+            currentNumber.textContent = operand1;
+    
+        }
+    }
+}
+
 let operand1 = '0';
 let operand2 = '';
 let operator = "";
@@ -113,19 +127,11 @@ const clear = document.querySelector('.clear');
 clear.addEventListener('click',clearScreen);
 document.addEventListener('keypress',clearScreen)
 
+
 const deleteButton = document.querySelector('.delete');
-deleteButton.addEventListener('click',()=>{
-    if (operator){
-        operand2 = operand2.slice(0,-1);
-        currentNumber.textContent = operand2;
-    }else{
-        operand1 = operand1.slice(0,-1);
-        currentNumber.textContent = operand1;
+deleteButton.addEventListener('click',deleteChr);
+document.addEventListener('keydown',deleteChr)
 
-    }
-});
-
-Number.is
 
 
 
