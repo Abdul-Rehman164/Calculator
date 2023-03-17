@@ -18,7 +18,7 @@ function operate(num1, num2, operation) {
 }
 
 function getOperand(e){
-    if (e.pointerType === '') return;
+    if (e.key === 'Enter') e.preventDefault();
     let content = '';
     if (e.type === 'keypress'){
         if ( (e.key >= '0' && e.key <= '9') || e.key === '.'){
@@ -72,7 +72,7 @@ function getResult(e){
 }
 
 function clearScreen(e){
-    if (e.pointerType === '') return;
+    if (e.key === 'Enter') e.preventDefault();
     if (e.key === 'c' || e.type === 'click'){
         operand1 = '0';
         operand2 = '';
@@ -84,7 +84,7 @@ function clearScreen(e){
 }
 
 function deleteChr(e){
-    if (e.pointerType === '') return;
+    if (e.key === 'Enter') e.preventDefault();
     if(e.key === 'Backspace' || e.type === 'click'){
         if (operator){
             operand2 = operand2.slice(0,-1);
